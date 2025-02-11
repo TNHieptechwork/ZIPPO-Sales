@@ -1,0 +1,238 @@
+﻿@{
+    Layout = null;
+}
+
+@model Zippo_Manage.Models.Sanpham
+
+
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết sản phẩm - @Model.TenSp</title>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/"><img class="img-responsive" src="https://zippo.vn/wp-content/themes/zippo/assets/images/zippo-logo-black.svg" alt="Logo" /></a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-left">
+                        <form class="navbar-form navbar-left" role="search" method="get" asp-action="TimKiemSanPham" asp-controller="SanPham">
+                            <div class="form-group">
+                                <input style="width:200px" type="text" name="keyword" class="form-control" placeholder="Tìm kiếm sản phẩm...">
+                            </div>
+                            <button type="submit" class="btn btn-default">Tìm kiếm</button>
+                        </form>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/">Trang Chủ</a></li>
+                        <li><a asp-action="GioiThieu" asp-controller="Home">Giới Thiệu</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sản Phẩm <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a asp-route-maLoai="Armor" asp-action="dropDownSanPham" asp-controller="SanPham">Zippo Armor</a></li>
+                                <li><a asp-route-maLoai="Classics" asp-action="dropDownSanPham" asp-controller="SanPham">Zippo Classic</a></li>
+                                <li><a asp-route-maLoai="Slim" asp-action="dropDownSanPham" asp-controller="SanPham">Zippo Slim</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            @if (Context.Session.GetString("TenDangNhap") != null)
+                            {
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-user"></i> @Context.Session.GetString("TenKhachHang") <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    @if (Context.Session.GetString("Vaitro") == "Admin")
+                                    {
+                                        <li><a asp-action="dashBoardManage" asp-controller="Home">Trang quản lý</a></li>
+                                    }
+                                    <li><a asp-action="DangXuat" asp-controller="TaiKhoan">Đăng Xuất</a></li>
+                                </ul>
+                            }
+                            else
+                            {
+                                <a asp-action="dangNhap" asp-controller="TaiKhoan">
+                                    <i class="fa fa-user"></i> Tài Khoản
+                                </a>
+                            }
+                        </li>
+                        <li><a asp-action="Index" asp-controller="GioHang"><i class="fa fa-shopping-cart"></i> Giỏ Hàng</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="product-image">
+                    <img src="@Url.Content("~/img/products/" + Model.HinhAnh)" alt="@Model.TenSp" class="img-fluid rounded">
+                    <div class="thumbnails mt-3">
+                        @if (ViewData["Thumbnails"] != null)
+                        {
+                            var thumbnails = (List<string>)ViewData["Thumbnails"];
+                            if (thumbnails.Any())
+                            {
+                                foreach (var thumb in thumbnails)
+                                {
+                                    <a> <img src="@Url.Content(thumb)" alt="Ảnh phụ cho sản phẩm @Model.MaSp" class="img-thumbnail" style="width: 60px; height: 60px; margin-right: 10px;" /> </a>
+                                }
+                            }
+                            else
+                            {
+                                <p>Không có ảnh phụ nào.</p>
+                            }
+                        }
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <nav class="woocommerce-breadcrumb breadcrumbs uppercase">
+                    <a href="/">Trang chủ</a> <span class="divider">/</span> 
+                    <a href="/">Sản Phẩm</a> <span class="divider">/</span>
+                    @if (Model.MaLoaiNavigation.TenLoai.Equals("ZIPPO ARMOR"))
+                    {
+                        <a asp-route-maLoai="Armor" asp-action="dropDownSanPham" asp-controller="SanPham">@Model.MaLoaiNavigation.MaLoai - @Model.MaLoaiNavigation.TenLoai</a>
+                    }
+                    else if (Model.MaLoaiNavigation.TenLoai.Equals("ZIPPO CLASSIC"))
+                    {
+                        <a asp-route-maLoai="Classics" asp-action="dropDownSanPham" asp-controller="SanPham">@Model.MaLoaiNavigation.MaLoai - @Model.MaLoaiNavigation.TenLoai</a>
+                    }
+                    else
+                    {
+                        <a asp-route-maLoai="Slim" asp-action="dropDownSanPham" asp-controller="SanPham">@Model.MaLoaiNavigation.MaLoai - @Model.MaLoaiNavigation.TenLoai</a>
+                    }
+                </nav>
+                <h1>@Model.TenSp</h1>
+                <p><strong>Mã sản phẩm:</strong> @Model.MaSp</p>
+                <p>
+                    <strong>Mô tả:</strong>
+                    @foreach (var line in Model.MotaSp.Split('.'))
+                    {
+                        if (!string.IsNullOrWhiteSpace(line))
+                        {
+                            <li>@line.Trim()</li>
+                        }
+                    }
+                </p>
+                <p><strong>Giá:</strong> @String.Format("{0:0,0}đ", Model.Gia)</p>
+                <p><strong>Loại sản phẩm:</strong> @Model.MaLoaiNavigation.TenLoai</p>
+                <p><strong>Tồn kho:</strong>@Model.SoLuong</p>
+                <label for="quantity" class="mr-2"><strong>Số lượng mua:</strong></label>
+                <div class="input-group" style="max-width: 120px;">
+                    <div class="input-group-prepend" style="display:flex">
+                        <button type="button" class="btn btn-outline-secondary" onclick="changeQuantity(-1)">-</button>
+                        <input type="number" class="form-control text-center" id="quantity" name="SoLuong" value="1" min="1" />
+                        <button type="button" class="btn btn-outline-secondary" onclick="changeQuantity(1)">+</button>
+                    </div>
+                </div>
+                <div class="actions mt-4">
+                    <form asp-action="DatHang" method="post">
+                        <input type="hidden" name="MaSp" value="@Model.MaSp" />
+                        <button type="submit" class="btn btn-primary btn-lg">Mua ngay</button>
+                    </form>
+                    <form asp-action="themGioHang" method="post" asp-controller="GioHang">
+                        <input type="hidden" name="maSp" value="@Model.MaSp" />
+                        <input type="hidden" name="soLuong" id="hiddenQuantity" value="1" />
+                        <button type="submit" class="btn btn-success" onclick="updateQuantity()">Thêm vào giỏ hàng</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact mt-5">
+            <h2>Liên hệ với chúng tôi</h2>
+            <div class="row">
+                <div class="col-md-5">
+                    <form method="post" action="/Home/LienHe">
+                        <div class="form-group">
+                            <label for="Name">Họ và Tên:</label>
+                            <input type="text" class="form-control" id="Name" name="Name" placeholder="Nhập họ và tên">
+                        </div>
+                        <div class="form-group">
+                            <label for="Email">Email:</label>
+                            <input type="email" class="form-control" id="Email" name="Email" placeholder="Nhập địa chỉ email">
+                        </div>
+                        <div class="form-group">
+                            <label for="Message">Nội dung:</label>
+                            <textarea class="form-control" id="Message" name="Message" rows="5" placeholder="Nhập nội dung liên hệ"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success">Gửi</button>
+                    </form>
+                </div>
+                <div class="col-md-7">
+                    <h3>Địa chỉ</h3>
+                    <p>180 Đ. Cao Lỗ, Phường 4, Quận 8, Hồ Chí Minh, Việt Nam</p>
+                    <h3>Điện thoại</h3>
+                    <p>(+84) 283 850 5520</p>
+                    <h3>Email</h3>
+                    <p><a href="mailto:hiepsktz101@gmail.com">hiepsktz101@gmail.com</a></p>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5543.659476795154!2d106.67626923574024!3d10.737627360906025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f62a90e5dbd%3A0x674d5126513db295!2sSaigon%20Technology%20University!5e0!3m2!1sen!2snl!4v1732960541556!5m2!1sen!2snl" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('btn-add-cart').addEventListener('click', function () {
+            alert('Sản phẩm đã được thêm vào giỏ hàng!');
+        });
+    </script>
+
+    <script src="~/js/jquery.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+<script>
+    function updateQuantity() {
+        const quantity = document.getElementById('quantity').value;
+        const hiddenQuantity = document.getElementById('hiddenQuantity');
+        hiddenQuantity.value = quantity;
+    }
+    function changeQuantity(delta) {
+        const quantityInput = document.getElementById('quantity');
+        let currentValue = parseInt(quantityInput.value);
+        if (isNaN(currentValue)) {
+            currentValue = 1;
+        }
+        const newValue = currentValue + delta;
+        quantityInput.value = Math.max(newValue, 1);
+    }
+    function changeMainImage(event) {
+        event.preventDefault();
+
+        const newSrc = event.target.getAttribute('src');
+
+        const mainImage = document.querySelector('.product-image img');
+        mainImage.setAttribute('src', newSrc);
+
+        const thumbnailImage = event.target;
+
+        mainImage.style.width = '262px';
+        mainImage.style.height = '229px';
+    }
+
+    document.querySelectorAll('.thumbnails a').forEach(function (thumbnail) {
+        thumbnail.addEventListener('click', changeMainImage);
+    });
+</script>
+

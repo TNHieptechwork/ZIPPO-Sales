@@ -1,0 +1,127 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Zippo_Manage
+build_property.RootNamespace = Zippo_Manage
+build_property.ProjectDir = D:\TRANNGOCHIEP_HUYNHTANTAI\Zippo_Manage\Zippo_Manage\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\TRANNGOCHIEP_HUYNHTANTAI\Zippo_Manage\Zippo_Manage
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/TRANNGOCHIEP_HUYNHTANTAI/Zippo_Manage/Zippo_Manage/Views/DonHang/dsDonHang.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9uSGFuZ1xkc0RvbkhhbmcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TRANNGOCHIEP_HUYNHTANTAI/Zippo_Manage/Zippo_Manage/Views/DonHang/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9uSGFuZ1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TRANNGOCHIEP_HUYNHTANTAI/Zippo_Manage/Zippo_Manage/Views/GioHang/dsGioHangAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2lvSGFuZ1xkc0dpb0hhbmdBZG1pbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TRANNGOCHIEP_HUYNHTANTAI/Zippo_Manage/Zippo_Manage/Views/GioHang/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2lvSGFuZ1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TRANNGOCHIEP_HUYNHTANTAI/Zippo_Manage/Zippo_Manage/Views/Home/dashBoardManage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxkYXNoQm9hcmRNYW5hZ2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TRANNGOCHIEP_HUYNHTANTAI/Zippo_Manage/Zippo_Manage/Views/Home/GioiThieu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxHaW9pVGhpZXUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TRANNGOCHIEP_HUYNHTANTAI/Zippo_Manage/Zippo_Manage/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TRANNGOCHIEP_HUYNHTANTAI/Zippo_Manage/Zippo_Manage/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TRANNGOCHIEP_HUYNHTANTAI/Zippo_Manage/Zippo_Manage/Views/KhachHang/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2hhY2hIYW5nXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TRANNGOCHIEP_HUYNHTANTAI/Zippo_Manage/Zippo_Manage/Views/SanPham/ChiTietSanPham.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FuUGhhbVxDaGlUaWV0U2FuUGhhbS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TRANNGOCHIEP_HUYNHTANTAI/Zippo_Manage/Zippo_Manage/Views/SanPham/ChiTietSP_admin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FuUGhhbVxDaGlUaWV0U1BfYWRtaW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TRANNGOCHIEP_HUYNHTANTAI/Zippo_Manage/Zippo_Manage/Views/SanPham/dropDownSanPham.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FuUGhhbVxkcm9wRG93blNhblBoYW0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TRANNGOCHIEP_HUYNHTANTAI/Zippo_Manage/Zippo_Manage/Views/SanPham/dsSanPham.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FuUGhhbVxkc1NhblBoYW0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TRANNGOCHIEP_HUYNHTANTAI/Zippo_Manage/Zippo_Manage/Views/SanPham/formSuaSP.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FuUGhhbVxmb3JtU3VhU1AuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TRANNGOCHIEP_HUYNHTANTAI/Zippo_Manage/Zippo_Manage/Views/SanPham/formXoaSP.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FuUGhhbVxmb3JtWG9hU1AuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TRANNGOCHIEP_HUYNHTANTAI/Zippo_Manage/Zippo_Manage/Views/SanPham/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FuUGhhbVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TRANNGOCHIEP_HUYNHTANTAI/Zippo_Manage/Zippo_Manage/Views/SanPham/themSP.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FuUGhhbVx0aGVtU1AuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TRANNGOCHIEP_HUYNHTANTAI/Zippo_Manage/Zippo_Manage/Views/SanPham/TimKiemSanPham.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FuUGhhbVxUaW1LaWVtU2FuUGhhbS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TRANNGOCHIEP_HUYNHTANTAI/Zippo_Manage/Zippo_Manage/Views/SanPham/xemMaLoaiSP.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FuUGhhbVx4ZW1NYUxvYWlTUC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TRANNGOCHIEP_HUYNHTANTAI/Zippo_Manage/Zippo_Manage/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TRANNGOCHIEP_HUYNHTANTAI/Zippo_Manage/Zippo_Manage/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TRANNGOCHIEP_HUYNHTANTAI/Zippo_Manage/Zippo_Manage/Views/TaiKhoan/DangKy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFpS2hvYW5cRGFuZ0t5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TRANNGOCHIEP_HUYNHTANTAI/Zippo_Manage/Zippo_Manage/Views/TaiKhoan/DangNhap.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFpS2hvYW5cRGFuZ05oYXAuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TRANNGOCHIEP_HUYNHTANTAI/Zippo_Manage/Zippo_Manage/Views/TaiKhoan/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFpS2hvYW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TRANNGOCHIEP_HUYNHTANTAI/Zippo_Manage/Zippo_Manage/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TRANNGOCHIEP_HUYNHTANTAI/Zippo_Manage/Zippo_Manage/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TRANNGOCHIEP_HUYNHTANTAI/Zippo_Manage/Zippo_Manage/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-1yopczmnev

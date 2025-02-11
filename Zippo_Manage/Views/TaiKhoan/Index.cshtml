@@ -1,0 +1,49 @@
+﻿@{
+    Layout = null; 
+}
+@model IEnumerable<Zippo_Manage.Models.TaiKhoanModel>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+<h2>Danh sách tài khoản</h2>
+<a asp-action="themTK" asp-controller="TaiKhoan" class="btn btn-primary">Thêm Tài Khoản Mới</a>
+<a asp-action="dashBoardManage" asp-controller="Home" class="btn btn-primary">Quay lại</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Mã Tài Khoản</th>
+            <th>Tên Đăng Nhập</th>
+            <th>Mật Khẩu</th>
+            <th>Vai Trò</th>
+            <th>Ngày Tạo</th>
+            <th>Tác vụ</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.MaTk</td>
+                    <td>@item.TenDangNhap</td>
+                    <td>@item.MatKhau</td>
+                    <td>@item.Vaitro</td>
+                    <td>@item.Ngaytao</td>
+                    <td>
+                        <a class="btn btn-primary">Sửa</a>
+                        <a class="btn btn-primary">Xóa</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5" class="text-center">Không có dữ liệu</td>
+            </tr>
+        }
+    </tbody>
+</table>

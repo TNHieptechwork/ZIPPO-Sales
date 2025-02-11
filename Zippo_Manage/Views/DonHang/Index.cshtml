@@ -1,0 +1,40 @@
+﻿@{
+    Layout = null;
+}
+
+@model IEnumerable<Zippo_Manage.Models.Donhang>
+
+@{
+    ViewData["Title"] = "Danh Sách Đơn hàng";
+    Layout = null;
+}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+<h1>Danh Sách Khách hàng</h1>
+<a asp-action="themKH" asp-controller="KhachHang" class="btn btn-primary">Thêm Khách Hàng</a>
+<a asp-action="dashBoardManage" asp-controller="Home" class="btn btn-primary">Quay lại</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Mã Đơn Hàng</th>
+            <th>Mã Khách Hàng</th>
+            <th>Ngày Đặt Hàng</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var donhang in Model)
+        {
+            <tr>
+                <td>@donhang.MaDh</td>
+                <td>@donhang.MaKhNavigation.Ten</td> <!-- Hiển thị tên khách hàng -->
+                <td>@donhang.NgayDatHang.ToString("dd/MM/yyyy")</td>
+                <td>
+                    <a href="@Url.Action("Details", "Donhang", new { id = donhang.MaDh })" class="btn btn-info">Xem Chi Tiết</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,256 @@
+﻿@model List<Giohang>
+@{
+    ViewBag.Title = "Giỏ Hàng";
+    Layout = null;
+}
+
+@using Microsoft.AspNetCore.Http;
+@using Newtonsoft.Json;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Giỏ Hàng</title>
+    <meta name="description" content="Your description">
+    <meta name="keywords" content="Your,Keywords">
+    <meta name="author" content="ResponsiveWebInc">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="#">
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        <header>
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/"><img class="img-responsive" src="https://zippo.vn/wp-content/themes/zippo/assets/images/zippo-logo-black.svg" alt="Logo" /></a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-left">
+                            <form class="navbar-form navbar-left" role="search" method="get" asp-action="TimKiemSanPham" asp-controller="SanPham">
+                                <div class="form-group">
+                                    <input style="width:200px" type="text" name="keyword" class="form-control" placeholder="Tìm kiếm sản phẩm...">
+                                </div>
+                                <button type="submit" class="btn btn-default">Tìm kiếm</button>
+                            </form>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="/">Trang Chủ</a></li>
+                            <li><a asp-action="GioiThieu" asp-controller="Home">Giới Thiệu</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sản Phẩm <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a asp-route-maLoai="Armor" asp-action="dropDownSanPham" asp-controller="SanPham">Zippo Armor</a></li>
+                                    <li><a asp-route-maLoai="Classics" asp-action="dropDownSanPham" asp-controller="SanPham">Zippo Classic</a></li>
+                                    <li><a asp-route-maLoai="Slim" asp-action="dropDownSanPham" asp-controller="SanPham">Zippo Slim</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                @if (Context.Session.GetString("TenDangNhap") != null)
+                                {
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-user"></i> @Context.Session.GetString("TenKhachHang") <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a asp-action="DangXuat" asp-controller="TaiKhoan">Đăng Xuất</a></li>
+                                    </ul>
+                                }
+                                else
+                                {
+                                    <a asp-action="dangNhap" asp-controller="TaiKhoan">
+                                        <i class="fa fa-user"></i> Tài Khoản
+                                    </a>
+                                }
+                            </li>
+                            <li><a asp-action="Index" asp-controller="GioHang"><i class="fa fa-shopping-cart"></i> Giỏ Hàng</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <div class="banner">
+        </div>
+
+        <section>
+            <div class="container">
+                <div class="default-heading" style="padding-top:15px">
+                    <h2><span>GIỎ HÀNG CỦA BẠN</span></h2>
+                </div>
+                @if (Model == null || !Model.Any())
+                {
+                    <p>Giỏ hàng của bạn đang trống.</p>
+                }
+                else
+                {
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Hình Ảnh</th>
+                                <th>Tên Sản Phẩm</th>
+                                <th>Số Lượng</th>
+                                <th>Giá</th>
+                                <th>Thành Tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <img class="img-responsive" src="@Url.Content("~/img/products/" + item.Sanpham.HinhAnh)" alt="@item.Sanpham.TenSp" />
+                                    </td>
+                                    <td>@item.Sanpham.TenSp</td>
+                                    <td>
+                                        <input type="number" class="form-control" name="soLuong" value="@item.SoLuongMua" min="1" id="quantity_@item.Sanpham.MaSp" data-sp-id="@item.Sanpham.MaSp" />
+                                    </td>
+                                    <td>@String.Format("{0:0,0}đ", item.Sanpham.Gia)</td>
+                                    <td>@String.Format("{0:0,0}đ", (item.SoLuongMua * item.Gia))</td>
+                                    <td>
+                                        <form asp-action="CapNhatGioHang" asp-controller="GioHang" method="post" style="display:inline;">
+                                            <input type="hidden" name="maSp" value="@item.Sanpham.MaSp" />
+                                            <input type="hidden" name="soLuong" id="hidden_quantity_@item.Sanpham.MaSp" value="@item.SoLuongMua" />
+                                            <button type="submit" class="btn btn-link" style="padding: 0;">
+                                                <i class="fa fa-sync-alt" aria-hidden="true" style="font-size: 20px;"></i>
+                                            </button>
+                                        </form>
+
+                                        <form asp-action="XoaKhoiGioHang" asp-controller="GioHang" method="post" style="display:inline;">
+                                            <input type="hidden" name="maSp" value="@item.Sanpham.MaSp" />
+                                            <input type="hidden" name="soLuong" value="0" />
+                                            <button type="submit" class="btn btn-link" style="padding: 0;">
+                                                <i class="fa fa-trash" aria-hidden="true" style="font-size: 20px; color: red;"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div class="text-right">
+                        <a asp-action="TiepTucMuaSam" class="btn btn-default">Tiếp Tục Mua Sắm</a>
+                        <a asp-action="ThanhToan" class="btn btn-success">Thanh Toán</a>
+                    </div>
+                }
+            </div>
+        </section>
+
+
+        <div class="contact" id="contact">
+            <div class="container">
+                <div class="default-heading">
+                    <h2>Liên hệ chúng tôi</h2>
+                </div>
+                <div class="contact-container">
+                    <div class="row">
+                        <div class="col-md-5 col-sm-6">
+                            <h3>Thông tin liên hệ</h3>
+                            <form role="form" id="contactForm" method="post">
+                                <div class="form-group">
+                                    <label for="contactName">Họ tên</label>
+                                    <input class="form-control" type="text" id="contactName" name="contactName" placeholder="Nhập Họ tên" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactEmail">Email</label>
+                                    <input class="form-control" type="email" id="contactEmail" name="contactEmail" placeholder="Nhập Email" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactMessage">Message</label>
+                                    <textarea class="form-control" id="contactMessage" name="contactMessage" rows="3" placeholder="Nhập tin nhắn"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" name="submit" id="submit" class="btn btn-default">Gửi</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <h3>Địa chỉ</h3>
+                            <p class="address">
+                                180 Đ. Cao Lỗ ,<br>
+                                Phường 4, Quận 8,<br>
+                                Hồ Chí Minh, Việt Nam
+                            </p>
+                            <br>
+                            <h3>Điện thoại</h3>
+                            <p class="address">(+84) 283 850 5520</p>
+                            <br>
+                            <h3>Email</h3>
+                            <p class="address"><a href="#">hiepsktz101@gmail.com</a></p>
+                        </div>
+                        <div class="col-md-4">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5543.659476795154!2d106.67626923574024!3d10.737627360906025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f62a90e5dbd%3A0x674d5126513db295!2sSaigon%20Technology%20University!5e0!3m2!1sen!2snl!4v1732960541556!5m2!1sen!2snl" style="border:0;width:359px;height:286px" ; allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="container">
+                <p><a href="#">Trang Chủ</a> | <a href="#work">Sản Phẩm</a> | <a href="#team">Hot sale</a> | <a href="#contact">Liên Hệ</a></p>
+                <img class="img-responsive" src="img/logo_Zippo.jpg" alt="" />
+                <div class="social">
+                    <a href="https://www.facebook.com/hiep.dontwaste.my.time/"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-dribbble"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                    <a href="#"><i class="fa fa-google-plus"></i></a>
+                </div>
+                <p class="copy-right">Copyright &copy; 2014 <a href="#">Your Site</a> | Designed By : <a href="http://www.indioweb.in/portfolio">IndioWeb</a>, All rights reserved. </p>
+            </div>
+        </footer>
+
+    </div>
+
+
+    <script src="~/js/jquery.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/respond.min.js"></script>
+    <script src="~/js/html5shiv.js"></script>
+    <script src="~/js/custom.js"></script>
+    <script>
+        document.querySelectorAll('input[name="soLuong"]').forEach(function (input) {
+            input.addEventListener('input', function (event) {
+                var quantity = event.target.value;
+                var productId = event.target.getAttribute('data-sp-id');
+                var price = parseInt(event.target.closest('tr').querySelector('td:nth-child(4)').innerText.replace('đ', '').replace(',', '').trim());
+
+                if (quantity < 1) quantity = 1;
+
+                var total = price * quantity;
+                document.getElementById('total_' + productId).innerText = total.toLocaleString() + 'đ';
+
+            });
+        });
+        document.querySelectorAll('input[name="soLuong"]').forEach(input => {
+            input.addEventListener('change', function () {
+                const productId = this.dataset.spId;
+                const hiddenInput = document.getElementById(`hidden_quantity_${productId}`);
+                if (hiddenInput) {
+                    hiddenInput.value = this.value;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,68 @@
+﻿@model Zippo_Manage.Models.Sanpham
+
+@{
+    Layout = null;
+}
+<link href="~/css/bootstrap.min.css" rel="stylesheet">
+<link href="~/css/font-awesome.min.css" rel="stylesheet">
+<link href="~/css/style.css" rel="stylesheet">
+
+<div class="col-md-6">
+    @if (ViewBag.flag > 0)
+    {
+        <h1>Xác nhận xóa sản phẩm</h1>
+        <table class="table table-bordered">
+            <tr>
+                <th>Hình ảnh</th>
+                <td>
+                    @if (!string.IsNullOrEmpty(Model.HinhAnh))
+                    {
+                        <img src="@Url.Content("~/img/products/" + Model.HinhAnh)" alt="@Model.TenSp" style="width: 100px; height: auto;" />
+                    }
+                    else
+                    {
+                        <span>Không có hình</span>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th>Tên sản phẩm</th>
+                <td>@Model.TenSp</td>
+            </tr>
+            <tr>
+                <th>Mã sản phẩm</th>
+                <td>@Model.MaSp</td>
+            </tr>
+            <tr>
+                <th>Mô tả</th>
+                <td>@Model.MotaSp</td>
+            </tr>
+            <tr>
+                <th>Giá</th>
+                <td>@String.Format("{0:0,0}đ", Model.Gia)</td>
+            </tr>
+            <tr>
+                <th>Loại sản phẩm</th>
+                <td>@Model.MaLoaiNavigation.TenLoai</td>
+            </tr>
+            <tr>
+                <th>Số lượng tồn kho</th>
+                <td>@Model.SoLuong</td>
+            </tr>
+        </table>
+
+        <div class="actions mt-4">
+            <form asp-controller="SanPham" asp-action="XoaConfirmed" method="post">
+                <input type="hidden" name="maSp" value="@Model.MaSp" />
+                <button type="submit" class="btn btn-danger btn-lg">Xác nhận xóa</button>
+                <a href="@Url.Action("dsSanPham", "SanPham")" class="btn btn-primary">Hủy</a>
+            </form>
+        </div>
+    }
+    else
+    {
+        <h1>Không thể xóa sản phẩm này</h1>
+        <p>Sản phẩm bạn đang cố gắng xóa không tồn tại trong cơ sở dữ liệu.</p>
+        <a href="@Url.Action("dsSanPham", "SanPham")" class="btn btn-primary btn-lg">Quay lại danh sách sản phẩm</a>
+    }
+</div>

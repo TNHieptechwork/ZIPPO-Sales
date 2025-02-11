@@ -1,0 +1,107 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ZIPPO - Đăng Ký</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Styles -->
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ff69b4, #6a5acd);
+        }
+
+        .container {
+            background: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn {
+            background-color: #ff69b4;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #ff1493;
+        }
+
+        .switch-link {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .switch-link a {
+            color: #ff69b4;
+            text-decoration: none;
+        }
+
+        .switch-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a class="navbar-brand" href="/"><img class="img-responsive" src="https://zippo.vn/wp-content/themes/zippo/assets/images/zippo-logo-black.svg" alt="Logo" /></a>
+        <h2>ĐĂNG KÝ</h2>
+        <form>
+            <!-- Name input -->
+            <input type="text" id="signupName" class="form-control" placeholder="Họ tên" required />
+
+            <!-- Email input -->
+            <input type="email" id="signupEmail" class="form-control" placeholder="Tên đăng nhập hoặc email" required />
+
+            <!-- Password input -->
+            <input type="password" id="signupPassword" class="form-control" placeholder="Mật khẩu" required />
+
+            <!-- Confirm Password input -->
+            <input type="password" id="signupConfirmPassword" class="form-control" placeholder="Xác nhận mật khẩu" required />
+
+            <!-- Submit button -->
+            <button type="submit" class="btn">ĐĂNG KÝ</button>
+
+            <!-- Switch to login link -->
+            <div class="switch-link">
+                Đã có tài khoản? <a href="/Login">Đăng nhập</a>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,514 @@
+﻿/*
+ * Author 	: HIMANSHU GUPTA 
+ * Email 		: himanshucse2012@gmail.com
+ * Website	:	http://www.indioweb.in/portfolio
+ */
+ 
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600);
+ 
+/*
+ * Basic CSS starts 
+ */
+
+
+
+/*=============================*/
+.default-heading h2 {
+	display: flex;
+	align-items: center;
+	text-align: center;
+}
+
+	.default-heading h2::before,
+	.default-heading h2::after {
+		content: "";
+		flex: 1;
+		border-bottom: 1px solid #000; 
+		margin: 0 10px;
+	}
+
+	.default-heading h2 span {
+		white-space: nowrap; /* Không xuống dòng văn bản */
+	}
+
+
+body{
+	font-family: 'Open Sans', Sans Serif;
+	font-weight: 400;
+	color: #545454;
+	-webkit-font-smoothing: antialiased;
+}
+
+h1,h2,h3,h4,h5,h6{
+	font-family: 'Open Sans', Sans Serif;
+	font-weight: 600;
+}
+
+p{
+	margin:0;
+	padding:0;
+}
+
+a{
+	text-decoration: none;
+	color: #fb6c6c;
+}
+
+a:hover{
+	text-decoration: none;
+	color: #e32b2b;
+}
+
+a:hover,a:active,a:focus {
+	outline: 0;
+}
+
+hr{
+
+}
+
+:focus {
+	outline:none;
+}
+
+::-moz-focus-inner {
+	border:0;
+}
+
+/* 
+ * Basic CSS ends 
+ */
+
+header .navbar { 
+	margin: 0;
+	border-radius: 0;
+	border-bottom: 1px solid #fb6c6c; 
+	box-shadow: 0 1px 15px rgba(0,0,0,0.2);
+}
+header .navbar-nav>li>a {
+	margin: 15px 3px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	border: 1px solid transparent;
+	border-radius: 3px;
+}
+
+header .navbar-default .navbar-nav>li>a:hover, 
+header .navbar-default .navbar-nav>li>a:focus,
+header .navbar-default .navbar-nav>li.open>a:hover, 
+header .navbar-default .navbar-nav>li.open>a:focus {
+	background: #fff;
+	border: 1px solid #fb6c6c;
+}
+
+header .navbar-nav .dropdown-menu {
+	top: 57px;
+	border-radius: 3px;
+	border-color: #fb6c6c;
+}
+header .navbar-nav .dropdown-menu:after, 
+header .navbar-nav .dropdown-menu:before {
+	bottom: 100%;
+	right: 30px;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+header .navbar-nav .dropdown-menu:after {
+	border-color: rgba(240, 253, 255, 0);
+	border-bottom-color: #fff;
+	border-width: 7px;
+}
+
+header .navbar-nav .dropdown-menu:before {
+	border-color: rgba(194, 225, 245, 0);
+	border-bottom-color: #fb6c6c;
+	border-width: 8px;
+	margin-right: -1px;
+}
+header .navbar-brand {
+	padding: 0;
+	height: auto;
+}
+header .navbar-brand img {
+	position: relative;
+	top: 7px;
+	max-width: 165px;
+}
+
+/*
+ * Banner 
+ */
+ 
+.banner {
+	background: #fff url('../img/bannerZippo1.jpg');
+	padding-top: 150px;
+	padding-bottom: 150px;
+	text-align: center;
+}
+
+.banner h2 {
+	margin-top: 0;
+	margin-bottom: 0;
+	font-size: 28px;
+	line-height: 35px;
+	color: #eee;
+	text-transform: capitalize;
+}
+.banner h3 {
+	margin-top: 20px;
+	margin-bottom: 25px;
+	font-size: 20px;
+	line-height: 25px;
+	color: #ddd;
+	text-transform: uppercase;
+	letter-spacing: 0.055em;
+}
+
+.banner .btn {
+	padding: 7px 25px;
+	font-size: 14px;
+	border-radius: 30px;
+}
+
+/*
+ * default heading
+ */
+
+.default-heading {
+	margin-bottom: 30px;
+	text-align: center; 
+}
+.default-heading h2 {
+	margin-top: 0;
+	margin-bottom: 20px;
+	font-size: 32px; 
+}
+.default-heading p {
+	font-size: 14px;
+	line-height: 26px;
+	text-transform: capitalize;
+	letter-spacing: 0.055em;
+}
+
+/*
+ * works
+ */
+ 
+.works {
+	padding-top: 120px;
+	padding-bottom: 30px;
+}
+
+.works .work-item {
+	max-width: 360px;
+	margin: 0 auto;
+	margin-top: 30px;
+	text-align: center;
+}
+.works .work-item h3 {
+	margin-top: 20px;
+	font-size: 22px;
+}
+
+.works .work-item .org {
+	display: block;
+	font-size: 13px;
+	font-style: italic;
+	text-transform: uppercase;
+}
+
+/*
+ * team
+ */
+
+ 
+.team {
+	padding-top: 120px;
+	padding-bottom: 30px;
+}
+
+.team .member {
+	max-width: 360px;
+	margin: 0 auto;
+	margin-top: 30px;
+	text-align: center;
+}
+.team .member h4 {
+	margin-top: 20px;
+	font-size: 22px;
+}
+.team .member p {
+	padding: 0 15px;
+	font-size: 14px;
+	line-height: 23px;
+}
+
+
+/*
+ * Contact
+ */
+ 
+.contact {
+	padding-top: 120px;
+	padding-bottom: 120px;
+}
+
+.contact h3 {
+	margin-top: 0px;
+	font-size: 20px;
+}
+.contact p {
+	padding: 0 15px;
+	font-size: 14px;
+	line-height: 23px;
+}
+
+footer {
+	padding: 50px 0;
+	background: #e32b2b;
+	text-align: center;
+}
+
+footer p {
+	font-size: 13px;
+	line-height: 25px;
+	color: #fff;
+}
+footer p a { 
+	font-size: 14px;
+	line-height: 26px;
+	text-transform: uppercase;
+	letter-spacing: 0.055em;
+	color: #fff;
+}
+footer p a:hover { color: #fb6c6c; }
+footer img {
+	max-width: 150px !important;
+	margin: 15px auto;
+	background: #f8f8f8;
+	border-radius: 4px;
+}
+
+footer .social a {
+	display: inline-block;
+	margin: 0 2px;
+	margin-top: 5px;
+	padding: 2px;
+	width: 35px;
+	height: 35px;
+	line-height: 35px;
+	background: #fff;
+	font-size: 14px;
+	border-radius: 4px;
+}
+
+footer .social a  i {
+	display: block;
+	width: 100%;
+	height: 100%;
+	line-height: 30px;
+	border-radius: 3px;
+	border: 1px dashed #e32b2b;
+}
+
+footer .copy-right {
+	margin-top: 10px;
+}
+
+/*
+ * Responsive CSS 
+ */
+
+/*
+ * Mobile phones 
+ */
+@media (max-width: 480px){
+	body {
+		font-size: 14px; /* Adjust font size for readability */
+	}
+
+	.banner {
+		padding-top: 100px;
+		padding-bottom: 100px;
+		background-size: cover; /* Ensure the banner image scales properly */
+	}
+
+		.banner h2 {
+			font-size: 20px;
+		}
+
+	header .navbar-nav {
+		text-align: center;
+	}
+
+		header .navbar-nav > li {
+			display: block;
+			margin: 5px 0;
+		}
+
+	footer img {
+		max-width: 100px;
+	}
+
+	footer p {
+		font-size: 12px;
+	}
+}
+
+/*
+ * Tablets 
+ */
+@media (max-width: 767px){
+	header .navbar-nav .dropdown-menu:after, 
+	header .navbar-nav .dropdown-menu:before { display: none;}
+	.contact .contact-container {
+		max-width: 360px;
+		margin: 0 auto;
+	}
+	.contact .contact-container form{	margin-bottom: 30px;}
+	.contact .contact-container .map { margin-top: 30px; }
+}
+
+/*
+ * Desktop 
+ */
+@media (max-width: 991px){
+	header .navbar-brand img {
+		max-width: 120px; /* Shrink logo size */
+	}
+
+	.banner {
+		padding-top: 120px;
+		padding-bottom: 120px;
+	}
+
+	.team, .works {
+		padding-top: 80px;
+	}
+
+	.contact {
+		padding-top: 100px;
+		padding-bottom: 100px;
+	}
+
+	footer {
+		padding: 30px 0;
+	}
+}
+
+/*Chi tiet sp css*/
+
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #f8f9fa;
+}
+
+.container {
+	/*max-width: 1200px;
+	margin: 50px auto;
+	display: flex;
+	gap: 20px;
+	padding: 20px;
+	background: #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;*/
+}
+
+.product-image {
+	flex: 1;
+	text-align: center;
+}
+
+	.product-image img {
+		max-width: 100%;
+		border-radius: 8px;
+	}
+
+.thumbnails {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+	margin-top: 10px;
+}
+
+	.thumbnails img {
+		width: 60px;
+		height: 60px;
+		object-fit: cover;
+		border: 2px solid #ddd;
+		border-radius: 5px;
+		cursor: pointer;
+		transition: border-color 0.3s;
+	}
+
+		.thumbnails img:hover {
+			border-color: #ff5722;
+		}
+
+.product-info {
+	flex: 1;
+	padding: 20px;
+}
+
+	.product-info h1 {
+		font-size: 24px;
+		color: #333;
+	}
+
+	.product-info .price {
+		font-size: 28px;
+		color: #e63946;
+		font-weight: bold;
+		margin: 15px 0;
+	}
+
+	.product-info ul {
+		list-style: none;
+		padding: 0;
+		margin: 20px 0;
+	}
+
+		.product-info ul li {
+			margin-bottom: 10px;
+			color: #555;
+		}
+
+.actions {
+	display: flex;
+	gap: 15px;
+	margin-top: 20px;
+}
+
+	.actions .btn {
+		padding: 10px 20px;
+		border: none;
+		border-radius: 5px;
+		font-size: 16px;
+		cursor: pointer;
+		transition: background-color 0.3s;
+	}
+
+.btn-cart {
+	background-color: #fbc02d;
+	color: #000;
+}
+
+	.btn-cart:hover {
+		background-color: #ffa000;
+	}
+
+.btn-buy {
+	background-color: #e53935;
+	color: #fff;
+}
+
+	.btn-buy:hover {
+		background-color: #d32f2f;
+	}

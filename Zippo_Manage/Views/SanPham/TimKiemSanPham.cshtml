@@ -1,0 +1,194 @@
+﻿@using Microsoft.AspNetCore.Http;
+@using Newtonsoft.Json;
+@{
+    Layout = null;
+}
+@model IEnumerable<Zippo_Manage.Models.SanPhamModel>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kết quả tìm kiếm</title>
+    <meta name="description" content="Your description">
+    <meta name="keywords" content="Your,Keywords">
+    <meta name="author" content="ResponsiveWebInc">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="#">
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        <header>
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/"><img class="img-responsive" src="https://zippo.vn/wp-content/themes/zippo/assets/images/zippo-logo-black.svg" alt="Logo" /></a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-left">
+                            <form class="navbar-form navbar-left" role="search" method="get" action="TimKiemSanPham">
+                                <div class="form-group">
+                                    <input style="width:200px" type="text" name="keyword" class="form-control" placeholder="Tìm kiếm sản phẩm...">
+                                </div>
+                                <button type="submit" class="btn btn-default">Tìm kiếm</button>
+                            </form>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="/">Trang Chủ</a></li>
+                            <li><a asp-action="GioiThieu" asp-controller="Home">Giới Thiệu</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sản Phẩm <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a asp-route-maLoai="Classic" asp-action="dropDownSanPham" asp-controller="SanPham">Zippo Classic</a></li>
+                                    <li><a asp-route-maLoai="Armor" asp-action="dropDownSanPham" asp-controller="SanPham">Zippo Armor</a></li>
+                                    <li><a asp-route-maLoai="Slim" asp-action="dropDownSanPham" asp-controller="SanPham">Zippo Slim</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                @if (Context.Session.GetString("TenDangNhap") != null)
+                                {
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-user"></i> @Context.Session.GetString("TenDangNhap") <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a asp-action="DangXuat" asp-controller="TaiKhoan">Đăng Xuất</a></li>
+                                    </ul>
+                                }
+                                else
+                                {
+                                    <a asp-action="dangNhap" asp-controller="TaiKhoan">
+                                        <i class="fa fa-user"></i> Tài Khoản
+                                    </a>
+                                }
+                            </li>
+                            <li><a asp-action="Index" asp-controller="GioHang"><i class="fa fa-shopping-cart"></i> Giỏ Hàng</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <div class="banner">
+           
+        </div>
+
+        <div class="works" id="work">
+            <div class="container">
+                <div class="default-heading">
+                    <h2><span>KẾT QUẢ TÌM KIẾM</span></h2>
+                </div>
+                <div class="row">
+                    @foreach (var sp in Model)
+                    {
+                        <div class="col-md-3">
+                            <div class="member">
+                                <a asp-action="ChiTietSanPham" asp-controller="SanPham" asp-route-maSP="@sp.MaSp">
+                                    <img class="img-responsive" src="@Url.Content("~/img/products/" + sp.HinhAnhPath)" alt="@sp.TenSp" />
+                                </a>
+                                <h4><a asp-action="chiTietSanPham" asp-controller="SanPham" asp-route-maSP="@sp.MaSp">@sp.TenSp - @sp.MaSp</a></h4>
+                                <span class="org">@String.Format("{0:0,0}đ", sp.Gia)</span>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="team" id="team">
+
+            <div class="contact" id="contact">
+                <div class="container">
+                    <div class="default-heading">
+                        <h2>Liên hệ chúng tôi</h2>
+                    </div>
+                    <div class="contact-container">
+                        <div class="row">
+                            <div class="col-md-5 col-sm-6">
+                                <h3>Thông tin liên hệ</h3>
+                                <form role="form" id="contactForm" method="post">
+                                    <div class="form-group">
+                                        <label for="contactName">Họ tên</label>
+                                        <input class="form-control" type="text" id="contactName" name="contactName" placeholder="Nhập Họ tên" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="contactEmail">Email</label>
+                                        <input class="form-control" type="email" id="contactEmail" name="contactEmail" placeholder="Nhập Email" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="contactMessage">Message</label>
+                                        <textarea class="form-control" id="contactMessage" name="contactMessage" rows="3" placeholder="Nhập tin nhắn"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" name="submit" id="submit" class="btn btn-default">Gửi</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <h3>Địa chỉ</h3>
+                                <p class="address">
+                                    180 Đ. Cao Lỗ ,<br>
+                                    Phường 4, Quận 8,<br>
+                                    Hồ Chí Minh, Việt Nam
+                                </p>
+                                <br>
+                                <h3>Điện thoại</h3>
+                                <p class="address">(+84) 283 850 5520</p>
+                                <br>
+                                <h3>Email</h3>
+                                <p class="address"><a href="#">hiepsktz101@gmail.com</a></p>
+                            </div>
+                            <div class="col-md-4">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5543.659476795154!2d106.67626923574024!3d10.737627360906025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f62a90e5dbd%3A0x674d5126513db295!2sSaigon%20Technology%20University!5e0!3m2!1sen!2snl!4v1732960541556!5m2!1sen!2snl" style="border:0;width:359px;height:286px" ; allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer>
+                <div class="container">
+                    <p><a href="#">Trang Chủ</a> | <a href="#work">Sản Phẩm</a> | <a href="#team">Hot sale</a> | <a href="#contact">Liên Hệ</a></p>
+                    <img class="img-responsive" src="img/logo_Zippo.jpg" alt="" />
+                    <div class="social">
+                        <a href="https://www.facebook.com/hiep.dontwaste.my.time/"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-dribbble"></i></a>
+                        <a href="#"><i class="fa fa-linkedin"></i></a>
+                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                    </div>
+                    <p class="copy-right">Copyright &copy; 2014 <a href="#">Your Site</a> | Designed By : <a href="http://www.indioweb.in/portfolio">IndioWeb</a>, All rights reserved. </p>
+                </div>
+            </footer>
+
+        </div>
+
+
+        <script src="~/js/jquery.js"></script>
+        <script src="~/js/bootstrap.min.js"></script>
+        <script src="~/js/respond.min.js"></script>
+        <script src="~/js/html5shiv.js"></script>
+        <script src="~/js/custom.js"></script>
+</body>
+</html>
+
+
+
+
+
+

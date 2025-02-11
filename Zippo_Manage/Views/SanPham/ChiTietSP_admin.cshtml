@@ -1,0 +1,104 @@
+﻿@{
+    Layout = null;
+}
+
+@model Zippo_Manage.Models.Sanpham
+
+
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết sản phẩm - @Model.TenSp</title>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="product-image">
+                    <img src="@Url.Content("~/img/products/" + Model.HinhAnh)" alt="@Model.TenSp" class="img-fluid rounded">
+                    <div class="thumbnails mt-3">
+                        @if (ViewData["Thumbnails"] != null)
+                        {
+                            var thumbnails = (List<string>)ViewData["Thumbnails"];
+                            if (thumbnails.Any())
+                            {
+                                foreach (var thumb in thumbnails)
+                                {
+                                    <a> <img src="@Url.Content(thumb)" alt="Ảnh phụ cho sản phẩm @Model.MaSp" class="img-thumbnail" style="width: 60px; height: 60px; margin-right: 10px;" /> </a>
+                                }
+                            }
+                            else
+                            {
+                                <p>Không có ảnh phụ nào.</p>
+                            }
+                        }
+                        else
+                        {
+                            <p>Không có ảnh phụ nào.</p>
+                        }
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <h1>@Model.TenSp</h1>
+                <p><strong>Mã sản phẩm:</strong> @Model.MaSp</p>
+                <p><strong>Mô tả:</strong>
+                    @foreach (var line in Model.MotaSp.Split('.'))
+                    {
+                        if (!string.IsNullOrWhiteSpace(line))
+                        {
+                            <li>@line.Trim()</li>
+                        }
+                    }
+                </p>
+                <p><strong>Giá:</strong> @String.Format("{0:0,0}đ", Model.Gia)</p>
+                <p><strong>Loại sản phẩm:</strong> @Model.MaLoaiNavigation.TenLoai</p>
+                <p><strong>Số lượng tồn kho:</strong> @Model.SoLuong</p>
+                <div class="actions mt-4">
+                    <form asp-controller="Sanpham" asp-action="formXoaSP" method="post">
+                        <input type="hidden" name="MaSp" value="@Model.MaSp" />
+                        <button type="submit" class="btn btn-primary btn-lg">Xóa</button>
+                    </form>
+                    <button class="btn btn-warning btn-lg mt-3" id="btn-add-cart">Thêm số lượng tồn kho</button>
+                </div>
+            </div>
+        </div>
+
+       
+
+    
+
+    <script src="~/js/jquery.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+<script>
+    function changeMainImage(event) {
+        event.preventDefault(); 
+
+        const newSrc = event.target.getAttribute('src');
+
+        const mainImage = document.querySelector('.product-image img');
+        mainImage.setAttribute('src', newSrc);
+
+        const thumbnailImage = event.target;
+
+        mainImage.style.width ='262px';
+        mainImage.style.height = '229px';
+    }
+
+    document.querySelectorAll('.thumbnails a').forEach(function (thumbnail) {
+        thumbnail.addEventListener('click', changeMainImage);
+    });
+</script>
+
