@@ -1,9 +1,11 @@
 *.cs linguist-detectable=true
 *.csproj linguist-detectable=true
 *.sln linguist-detectable=true
+
 *.html linguist-detectable=true
 *.css linguist-detectable=true
-/bin/** linguist-vendored
-/obj/** linguist-vendored
-/node_modules/** linguist-vendored
-/wwwroot/** linguist-vendored
+
+/bin/** linguist-vendored=false
+/obj/** linguist-vendored=false
+/wwwroot/** linguist-vendored=false
+/node_modules/** linguist-vendored=false
