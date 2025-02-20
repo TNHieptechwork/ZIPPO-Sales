@@ -2,7 +2,7 @@ Accout test cho admin :
 
 -Tài khoản & Mật khẩu: admin
 
-Accout test cho khách hàng mua sắm:
+Accout test cho khách hàng:
 -------------------------
 TK:nguyenvana@gmail.com
 MK:123
