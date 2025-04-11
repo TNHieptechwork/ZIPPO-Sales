@@ -1,8 +1,8 @@
-Accout test cho admin :
+Account test cho admin :
 
 -Tài khoản & Mật khẩu: admin
 
-Accout test cho khách hàng:
+Account test cho khách hàng:
 -------------------------
 TK:nguyenvana@gmail.com
 MK:123
